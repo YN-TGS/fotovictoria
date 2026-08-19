@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FotoVictoria | Sitio en construcción</title>
+<meta name="description" content="FotoVictoria — Estudio fotográfico y RegalArte en Nacimiento, Chile. Muy pronto, nuestro sitio web." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Alex+Brush&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream:      #fdf6f1;
+    --cream-2:    #f7ebe2;
+    --blush:      #f3d9d1;
+    --rose:       #c97c72;
+    --rose-dk:    #a85c52;
+    --gold:       #a9813f;
+    --gold-lt:    #c9a15f;
+    --ink:        #2e2620;
+    --gray:       #7d7267;
+    --serif:      'Playfair Display', serif;
+    --script:     'Alex Brush', cursive;
+    --sans:       'Poppins', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: linear-gradient(160deg, var(--cream) 0%, var(--cream-2) 55%, var(--blush) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+    padding: 2rem 1.25rem;
+  }
+
+  /* ── decorative corners (cropped from client artwork, flowers only) ── */
+  .corner {
+    position: fixed;
+    width: 260px;
+    height: 260px;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 0;
+  }
+
+  .corner.tl {
+    top: -30px;
+    left: -30px;
+    background-image: url('assets/IA-08.jpeg');
+    background-size: 1024px 1536px;
+    background-position: 0px 0px;
+    -webkit-mask-image: radial-gradient(circle at 30% 30%, black 32%, transparent 62%);
+    mask-image: radial-gradient(circle at 30% 30%, black 32%, transparent 62%);
+  }
+
+  .corner.br {
+    bottom: -40px;
+    right: -40px;
+    background-image: url('assets/IA-07.jpeg');
+    background-size: 1254px 1254px;
+    background-position: -834px -834px;
+    -webkit-mask-image: radial-gradient(circle at 70% 70%, black 28%, transparent 60%);
+    mask-image: radial-gradient(circle at 70% 70%, black 28%, transparent 60%);
+  }
+
+  @media (max-width: 640px) {
+    .corner { width: 160px; height: 160px; }
+  }
+
+  /* ── card ── */
+  .card {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    width: 100%;
+    text-align: center;
+    padding: 3.5rem 2.5rem;
+    background: rgba(255, 253, 250, 0.72);
+    border: 1px solid rgba(169, 129, 63, 0.25);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(90, 60, 40, 0.12);
+    backdrop-filter: blur(6px);
+  }
+
+  .frame-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin: 0 auto 1.75rem;
+    width: fit-content;
+  }
+
+  .frame-rule .line {
+    width: 46px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-lt));
+  }
+  .frame-rule .line.right { background: linear-gradient(90deg, var(--gold-lt), transparent); }
+
+  .frame-rule svg { flex-shrink: 0; }
+
+  .brand {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 8vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+    color: var(--ink);
+  }
+
+  .brand .script {
+    font-family: var(--script);
+    font-size: 1.35em;
+    color: var(--rose);
+    font-weight: 400;
+    margin-left: 0.15em;
+  }
+
+  .tagline {
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 2rem;
+  }
+
+  .headline {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 4vw, 1.85rem);
+    font-weight: 500;
+    color: var(--rose-dk);
+    margin-bottom: 0.75rem;
+  }
+
+  .sub {
+    font-size: 0.98rem;
+    color: var(--gray);
+    line-height: 1.75;
+    max-width: 460px;
+    margin: 0 auto 2rem;
+    font-weight: 300;
+  }
+
+  .partner-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 2.25rem;
+    font-weight: 400;
+  }
+
+  .partner-note .script {
+    font-family: var(--script);
+    font-size: 1.5em;
+    color: var(--rose);
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-lt);
+    margin: 0 auto 2.25rem;
+    opacity: 0.6;
+  }
+
+  /* ── contact ── */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--rose);
+    color: #fffaf7;
+    text-decoration: none;
+    padding: 0.9rem 2.1rem;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    box-shadow: 0 12px 28px rgba(169, 92, 82, 0.28);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .whatsapp-btn:hover {
+    background: var(--rose-dk);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(169, 92, 82, 0.35);
+  }
+
+  .whatsapp-btn svg { flex-shrink: 0; }
+
+  .contact-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .contact-details a {
+    color: var(--gray);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .contact-details a:hover {
+    color: var(--rose-dk);
+    border-color: var(--rose-dk);
+  }
+
+  .address-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1.1rem;
+    background: rgba(169, 129, 63, 0.08);
+    border: 1px solid rgba(169, 129, 63, 0.25);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 2.5rem 1.5rem; }
+    .contact-details { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
+
+  <main class="card">
+
+    <div class="frame-rule">
+      <span class="line"></span>
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="18" width="48" height="34" rx="4" stroke="#a9813f" stroke-width="2"/>
+        <path d="M22 18 L26 11 H38 L42 18" stroke="#a9813f" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="32" cy="35" r="10" stroke="#a9813f" stroke-width="2"/>
+        <path d="M32 30.5c-2.2 0-4 1.7-4 4.2 0 2.9 4 6.3 4 6.3s4-3.4 4-6.3c0-2.5-1.8-4.2-4-4.2z" fill="#c97c72"/>
+      </svg>
+      <span class="line right"></span>
+    </div>
+
+    <h1 class="brand">Foto<span class="script">Victoria</span></h1>
+    <p class="tagline">Capturamos momentos, enmarcamos tus historias</p>
+
+    <p class="headline">Estamos preparando algo especial para ti</p>
+    <p class="sub">
+      Nuestro sitio web está en construcción. Muy pronto podrás conocer todos nuestros
+      servicios fotográficos, regalos personalizados y mucho más — directamente aquí.
+    </p>
+
+    <p class="partner-note">en colaboración con <span class="script">RegalArte</span></p>
+
+    <div class="divider"></div>
+
+    <div class="contact">
+      <a href="https://wa.me/56926155981" class="whatsapp-btn" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.29-.75.93-.92 1.12-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.48.1-.2.05-.37-.02-.51-.08-.15-.65-1.58-.9-2.16-.24-.58-.48-.5-.65-.51h-.56c-.2 0-.51.08-.78.37-.26.29-1.02 1-1.02 2.43s1.05 2.82 1.19 3.01c.15.2 2.06 3.15 5 4.42.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.7-.7 1.94-1.37.24-.68.24-1.25.17-1.37-.07-.12-.26-.2-.55-.34z"/><path d="M12.02 2C6.5 2 2 6.5 2 12.02c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33a9.96 9.96 0 0 0 4.96 1.31h.01c5.52 0 10-4.5 10-10.02C22.03 6.5 17.55 2 12.02 2zm0 18.2h-.01c-1.6 0-3.16-.43-4.52-1.24l-.32-.19-3.01.79.8-2.93-.21-.3a8.16 8.16 0 0 1-1.26-4.31c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.86 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.53-3.68 8.2-8.2 8.2z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+
+      <div class="contact-details">
+        <a href="mailto:contacto@fotovictoria.cl">contacto@fotovictoria.cl</a>
+        <span>+56 9 2615 5981</span>
+      </div>
+
+      <span class="address-badge">📍 San Martín 539, Local 3 — Nacimiento, Chile</span>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 FotoVictoria · Nacimiento, Chile
+  </footer>
+
+</body>
+</html>
